@@ -1,8 +1,99 @@
 spring:
+  main:
+    allow-circular-references: true
+    allow-bean-definition-overriding: true
   application:
     name: product-sv
+  security:
+    oauth2:
+      resourceserver:
+        opaque-token:
+          introspection-uri: http://localhost:8080/introspect
+          client-id: my-client-gtel
+          client-secret: 2342342342323423
+
+  datasource:
+    url: jdbc:postgresql://192.168.5.70:5432/product?currentSchema=public
+    password: 123@123aA
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    hikari:
+      connection-timeout: 60000
+      maximum-pool-size: 25
+      minimum-idle: 5
+      idle-timeout: 600000
+      max-lifetime: 1800000
+    jpa:
+      generate-ddl: false
+      hibernate.ddl-auto: none
+      open-in-view: false
+      show-sql: false
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+          format_sql: true
+          jdbc.batch_size: 1000
+          order_inserts: true
+          default_schema: public
+redis:
+  config-file:  E:\MICROSERVICE TUTORIAL\\product\\config\\single.yaml
+logging:
+  level:
+    root: INFO
+system:
+  configurations:
+    cors:
+      allow-credentials: true
+      allowed-methods:
+        - GET
+        - POST
+        - PUT
+        - PATCH
+        - DELETE
+        - OPTIONS
+      allowed-header:
+        - Authorization
+        - Origin
+        - Content-Type
+        - Accept
+        - Accept-Encoding
+        - Accept-Language
+        - Access-Control-Allow-Origin
+        - Access-Control-Allow-Headers
+        - Access-Control-Request-Method
+        - X-Requested-With
+        - X-Auth-Token
+        - X-Xsrf-Token
+        - Cache-Control
+        - Id-Token
+      exposed-header:
+        - X-Xsrf-Token
+      url-based-pattern-cors-configuration-source: '/**'
+      allowed-origin-pattern:
+        - http://localhost:3000
+        - http://localhost:4200
+        - http://localhost:5173
+        - https://localhost:5173
+        - http://localhost:5173/
+        - https://localhost:5173/
+        - http://localhost:63342
+        - https://cainghien.gtelsoft.vn
+        - https://h1.gtelsoft.vn
+    uri-white-list:
+      - '/swagger-ui.html'
+      - '/swagger/*'
+      - '/swagger-ui/*'
+      - '/swagger/v3/api/docs'
+      - '/swagger/v3/api/docs/*'
+      - '/v3/api-docs'
+      - '/v3/api-docs/*'
+      - '/login'
+      - '/sign-up'
+      - '/public/**'
+      - '/introspect'
+      - '/actuator/**'
 server:
-  port: 8080
+  port: 8081
 eureka:
   client:
     serviceUrl:
