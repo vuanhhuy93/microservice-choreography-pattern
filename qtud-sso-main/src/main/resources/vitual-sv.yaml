@@ -1,0 +1,33 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: qtud-sso-virtualservice
+  namespace: c04
+spec:
+  gateways:
+    - nnn/nnn-gateway
+  hosts:
+    - sso.gtelsoft.vn
+  http:
+    - route:
+        - destination:
+            host: qtud-sso.c04.svc.cluster.local
+            port:
+              number: 80
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: quanlytraicainghien-virtualservice
+  namespace: c04
+spec:
+  gateways:
+    - nnn/nnn-gateway
+  hosts:
+    - cainghien.gtelsoft.vn
+  http:
+    - route:
+        - destination:
+            host: cainghien-fe.c04.svc.cluster.local
+            port:
+              number: 80

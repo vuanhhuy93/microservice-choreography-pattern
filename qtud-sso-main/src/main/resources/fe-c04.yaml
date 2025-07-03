@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cainghien-fe
+  namespace: c04
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cainghien-fe
+  template:
+    metadata:
+      labels:
+        app: cainghien-fe
+    spec:
+      containers:
+        - name: cainghien-fe
+          image: registry.gtelsoft.vn/c04/fe:1.0
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: docker-registry
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cainghien-fe
+  namespace: c04
+spec:
+  selector:
+    app: cainghien-fe
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
