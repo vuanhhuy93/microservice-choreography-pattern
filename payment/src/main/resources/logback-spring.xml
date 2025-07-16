@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+
+    <!-- Định nghĩa biến -->
+    <property name="LOG_DIR" value="./logs" />
+    <property name="LOG_FILE" value="${LOG_DIR}/application.log" />
+    <property name="MAX_HISTORY" value="30" />
+    <property name="TOTAL_SIZE_CAP" value="1GB" />
+
+    <!-- Pattern log -->
+    <property name="LOG_PATTERN"
+              value="%d{yyyy-MM-dd'T'HH:mm:ss.SSSZ} %-5level %logger{36} - [%X{traceId}] - [%X{spanId}]- [%X{id}] - [%X{event}] - %msg%n" />
+
+    <!-- Appender: Ghi ra console (nếu cần) -->
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Appender: Ghi ra file (xoay theo ngày) -->
+    <appender name="FileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_FILE}</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- File log sẽ là: spring-app.log.2024-05-26 -->
+            <fileNamePattern>${LOG_FILE}.%d{yyyy-MM-dd}</fileNamePattern>
+            <maxHistory>${MAX_HISTORY}</maxHistory>
+            <totalSizeCap>${TOTAL_SIZE_CAP}</totalSizeCap>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Cấu hình mức log -->
+    <root level="INFO">
+        <appender-ref ref="FileAppender" />
+         <appender-ref ref="Console" />
+    </root>
+
+</configuration>

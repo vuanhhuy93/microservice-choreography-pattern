@@ -1,4 +1,4 @@
-package com.gtel.product.configs;
+package com.gtel.product.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -44,10 +44,6 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
-
-
-
         return http
                 // enable csrf protection with cookie
                 .csrf(AbstractHttpConfigurer::disable)
@@ -72,9 +68,6 @@ public class SecurityConfig {
                 )
                 .build();
     }
-
-
-
 
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();

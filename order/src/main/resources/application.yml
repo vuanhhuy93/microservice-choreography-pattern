@@ -3,12 +3,12 @@ spring:
     allow-circular-references: true
     allow-bean-definition-overriding: true
   application:
-    name: product-sv
+    name: order-sv
   security:
     oauth2:
       resourceserver:
         opaque-token:
-          introspection-uri: http://192.168.5.51::8080/introspect
+          introspection-uri: http://192.168.5.51:8080/introspect
           client-id: my-client-gtel
           client-secret: 2342342342323423
 
@@ -93,7 +93,8 @@ system:
       - '/introspect'
       - '/actuator/**'
 server:
-  port: 8081
+  port: 8082
+
 eureka:
   client:
     serviceUrl:
@@ -102,4 +103,8 @@ eureka:
     preferIpAddress: true
 grpc:
   server:
-    port: 9090
+    port: 9091
+  client:
+    product:
+      address: static://localhost:9090
+      negotiation-type: plaintext
