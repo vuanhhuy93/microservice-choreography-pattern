@@ -1,0 +1,32 @@
+syntax = "proto3";
+package com.gtel.microservice.product;
+
+option java_multiple_files = true;
+
+option java_package = "com.gtel.payment.grpc";
+option java_outer_classname = "PaymentGrpc";
+
+service PaymentGrpcService {
+  rpc getUserBalance(GetUserBalanceInfoRequest) returns (GetUserBalanceResponse){
+
+  }
+
+
+}
+
+message GetUserBalanceInfoRequest{
+  string username = 1;
+}
+
+
+message GetUserBalanceResponse{
+  int32 code = 1;
+  string message = 2;
+
+  UserBalanceInfo userbalance = 3;
+}
+
+message UserBalanceInfo{
+  string username = 1;
+  int64 balance =2;
+}

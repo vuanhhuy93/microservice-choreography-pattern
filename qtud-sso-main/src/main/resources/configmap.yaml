@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: redis-sentinel
-  namespace: c04
+  namespace: qtud
 data:
   redis-sentinel.yaml: |
     ---
@@ -27,9 +27,9 @@ data:
       readMode: "SLAVE"
       subscriptionMode: "SLAVE"
       sentinelAddresses:
-        - "redis://172.25.27.10:26379"
-        - "redis://172.25.27.10:26380"
-        - "redis://172.25.27.12:26379"
+        - "redis://172.16.102.31:26379"
+        - "redis://172.16.102.32:26380"
+        - "redis://1172.16.102.33:26379"
       masterName: "mymaster"
       database: 0
     threads: 16

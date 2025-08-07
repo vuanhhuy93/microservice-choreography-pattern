@@ -16,9 +16,6 @@ spec:
       volumes:
         - name: logs
           emptyDir: { }
-        - name: promtail-config
-          configMap:
-            name: promtail-config
       containers:
         - name: qtud-sso
           image: registry.gtelsoft.vn/c04/qtud:1.1
@@ -29,20 +26,6 @@ spec:
           volumeMounts:
             - name: logs
               mountPath: /app/logs
-        - name: promtail
-          image: grafana/promtail:2.9.3
-          args:
-            - -config.file=/etc/promtail/config.yaml
-          volumeMounts:
-            - name: logs
-              mountPath: /app/logs
-            - name: promtail-config
-              mountPath: /etc/promtail
-          env:
-            - name: PROJECT_NAME
-              value: c04-qtud
-            - name: SERVICE_NAME
-              value: qtud-sso
       restartPolicy: Always
       imagePullSecrets:
         - name: docker-registry

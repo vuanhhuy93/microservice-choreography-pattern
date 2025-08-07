@@ -11,7 +11,6 @@ spring:
           introspection-uri: http://192.168.5.51::8080/introspect
           client-id: my-client-gtel
           client-secret: 2342342342323423
-
   datasource:
     url: jdbc:postgresql://192.168.5.70:5432/product?currentSchema=public
     password: 123@123aA
@@ -93,7 +92,7 @@ system:
       - '/introspect'
       - '/actuator/**'
 server:
-  port: 8081
+  port: 8080
 eureka:
   client:
     serviceUrl:

@@ -29,4 +29,20 @@ public class ProductGrpcImpl extends ProductGrpcServiceGrpc.ProductGrpcServiceIm
         }
         responseObserver.onCompleted();
     }
+
+    @Override
+    public void getProductsInfo(GetProductsInfoRequest request, StreamObserver<GetProductsResponse> responseObserver) {
+        try {
+            GetProductsResponse response = productService.getProductInfo(request);
+            responseObserver.onNext(response);
+        } catch (Exception e){
+            GetProductsResponse exResponse = GetProductsResponse.newBuilder()
+                    .setCode(500)
+                    .setMessage("INTERNAL SERVER ERROR")
+                    .build();
+
+            responseObserver.onNext(exResponse);
+        }
+        responseObserver.onCompleted();
+    }
 }

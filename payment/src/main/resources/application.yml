@@ -3,7 +3,7 @@ spring:
     allow-circular-references: true
     allow-bean-definition-overriding: true
   application:
-    name: product-sv
+    name: payment-sv
   security:
     oauth2:
       resourceserver:
@@ -13,7 +13,7 @@ spring:
           client-secret: 2342342342323423
 
   datasource:
-    url: jdbc:postgresql://192.168.5.70:5432/product?currentSchema=public
+    url: jdbc:postgresql://192.168.5.70:5432/payment?currentSchema=public
     password: 123@123aA
     driver-class-name: org.postgresql.Driver
     username: postgres
@@ -36,7 +36,7 @@ spring:
           order_inserts: true
           default_schema: public
 redis:
-  config-file:  E:\MICROSERVICE TUTORIAL\\product\\config\\single.yaml
+  config-file:  E:\MICROSERVICE TUTORIAL\\payment\\config\\single.yaml
 logging:
   level:
     root: INFO
@@ -100,3 +100,6 @@ eureka:
       defaultZone: ${EUREKA_URI:http://192.168.5.51:8761/eureka}
   instance:
     preferIpAddress: true
+grpc:
+  server:
+    port: 9091

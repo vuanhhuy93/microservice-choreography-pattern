@@ -10,11 +10,24 @@ service ProductGrpcService {
   rpc getProductInfo(GetProductInfoRequest) returns (GetProductResponse){
 
   }
+
+  rpc getProductsInfo(GetProductsInfoRequest) returns (GetProductsResponse){
+
+  }
 }
 
-
+message GetProductsInfoRequest{
+  repeated int64 productId = 1;
+}
 message GetProductInfoRequest{
   int64 productId = 1;
+}
+
+message GetProductsResponse{
+  int32 code = 1;
+  string message = 2;
+
+  repeated ProductInfo product = 3;
 }
 
 message GetProductResponse{
@@ -28,4 +41,5 @@ message ProductInfo{
   int64  productId = 1;
   string name = 2;
   int32 status = 3;
+  int64 price = 4;
 }

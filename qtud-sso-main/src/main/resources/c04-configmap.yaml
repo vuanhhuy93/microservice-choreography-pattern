@@ -12,9 +12,9 @@ data:
         allow-circular-references: true
         allow-bean-definition-overriding: true
       datasource:
-        url: jdbc:oracle:thin:@172.25.27.14:1521/c04
+        url: jdbc:oracle:thin:@172.16.103.11:1521/C04PDB
         username: qtud
-        password: qtud
+        password: Gtelpkt1122
         driver-class-name: oracle.jdbc.OracleDriver
       jpa:
         hibernate:
@@ -59,13 +59,8 @@ data:
             - X-Xsrf-Token
           url-based-pattern-cors-configuration-source: '/**'
           allowed-origin-pattern:
-            - http://localhost:3000
-            - http://localhost:4200
-            - http://localhost:5173
-            - https://localhost:5173
-            - http://localhost:5173/
-            - https://localhost:5173/
-            - http://localhost:63342
+            - http://qlcscn.c04.bca
+            - https://qlcscn.c04.bca
         uri-white-list:
           - '/swagger-ui.html'
           - '/swagger/*'

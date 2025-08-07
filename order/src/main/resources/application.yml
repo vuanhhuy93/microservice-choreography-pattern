@@ -13,7 +13,7 @@ spring:
           client-secret: 2342342342323423
 
   datasource:
-    url: jdbc:postgresql://192.168.5.70:5432/product?currentSchema=public
+    url: jdbc:postgresql://192.168.5.70:5432/orders?currentSchema=public
     password: 123@123aA
     driver-class-name: org.postgresql.Driver
     username: postgres
@@ -36,7 +36,7 @@ spring:
           order_inserts: true
           default_schema: public
 redis:
-  config-file:  E:\MICROSERVICE TUTORIAL\\product\\config\\single.yaml
+  config-file:  E:\MICROSERVICE TUTORIAL\\order\\config\\single.yaml
 logging:
   level:
     root: INFO
@@ -97,6 +97,8 @@ server:
 
 eureka:
   client:
+    register-with-eureka: false
+    fetch-registry: true
     serviceUrl:
       defaultZone: ${EUREKA_URI:http://192.168.5.51:8761/eureka}
   instance:
@@ -106,5 +108,7 @@ grpc:
     port: 9091
   client:
     product:
-      address: static://localhost:9090
+      enableKeepAlive: true
+      keepAliveWithoutCalls: true
+      address: 'discovery:///product-sv'
       negotiation-type: plaintext
